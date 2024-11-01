@@ -1,0 +1,48 @@
+
+.container__table{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  td img {
+    max-width: 100%; 
+    max-height: 50px; 
+    height: auto; 
+}
+  th {
+    background-color: #ddd;
+  }
+  tbody tr:last-child td {
+    background-color: #f9f9f9;
+  }
+  .button-container{
+    display: flex;
+  }
+  .button-container {
+    display: flex; 
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .small-font {
+    font-size: 0.8em; 
+}
+.red-price {
+  color: red;
+}
+button{
+  border-radius: 5px;
+  height: 20px;
+}

@@ -1,0 +1,19 @@
+
+
+.button-large{
+    width: 100%;
+    height: 48px;
+    background-color: #28A745;
+    border: solid 1px;
+    border-radius: 10px;
+    font-weight: 500;
+}   
+
+@media (max-width: 768px) {
+    .button-large {
+        width: 20%;
+        height: 40px;
+        font-size: 0.5rem; 
+    }
+
+}

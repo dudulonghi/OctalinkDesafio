@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteModalComponent implements OnInit {
 
+  verifyModalDel:boolean = false
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  
 }

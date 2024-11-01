@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal-add',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalAddComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

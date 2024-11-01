@@ -8,6 +8,10 @@ import { ModalAddComponent } from './Components/modal-add/modal-add.component';
 import { DeleteModalComponent } from './Components/delete-modal/delete-modal.component';
 import { ItemTableComponent } from './Components/item-table/item-table.component';
 import { PaginationComponent } from './Components/pagination/pagination.component';
+import { IndexComponent } from './pages/index/index.component';
+import { EditItensComponent } from './Components/edit-itens/edit-itens.component';
+
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -16,11 +20,14 @@ import { PaginationComponent } from './Components/pagination/pagination.componen
     ModalAddComponent,
     DeleteModalComponent,
     ItemTableComponent,
-    PaginationComponent
+    PaginationComponent,
+    IndexComponent,
+    EditItensComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
