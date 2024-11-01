@@ -38,7 +38,8 @@ table {
 
   .small-font {
     font-size: 0.8em; 
-}
+    height: 50px;
+  }
 .red-price {
   color: red;
 }

@@ -1,4 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
+import { CadastroData } from 'src/app/data/cadastroData';
 import { TableData } from 'src/app/interface/interface__table';
 import { CadastroService } from 'src/app/services/cadastro.service';
 
@@ -8,16 +10,16 @@ import { CadastroService } from 'src/app/services/cadastro.service';
   styleUrls: ['./item-table.component.css']
 })
 export class ItemTableComponent implements OnInit {
-  headers: string[] = ['ID', 'Imagem', 'Nome', 'Descrição', 'Preço', 'Categorias', 'Ações'];
+  headers: string[] = ['ID', 'Nome', 'Descrição', 'Preço', 'Categorias', 'Ações'];
   excludedCategories: string[] = ['motorcycle', 'groceries', 'kitchen-accessories'];
   data: TableData[] = [];
   paginatedData: TableData[] = [];
   currentPage: number = 0;
   pageSize: number = 6;
-
   totalPages: number = 0;
+  allProducts: TableData[] = [];
 
-  constructor(private service: CadastroService) { }
+  constructor(private service: CadastroService) {}
 
   ngOnInit(): void {
     this.getPageData(this.currentPage); 
@@ -30,14 +32,13 @@ export class ItemTableComponent implements OnInit {
           .filter((item: any) => !this.excludedCategories.includes(item.category))
           .map((item: any) => ({
             id: item.id,
-            image: item.images[0], 
             title: item.title,
             description: item.description,
             price: item.price,
             category: item.category,
           }));
-  
-        this.updatePaginatedData(); 
+        
+        this.updatePaginatedData();
         this.totalPages = Math.ceil(res.total / this.pageSize);
       },
       error: (err) => console.error("Erro ao buscar os dados:", err)
@@ -47,6 +48,32 @@ export class ItemTableComponent implements OnInit {
   updatePaginatedData() {
     this.paginatedData = this.data;
   }
+
+  onSearchTextChange(searchText: string) {
+    if (!searchText) {
+      this.updatePaginatedData(); 
+    } else {
+      this.service.getAllProducts().subscribe({
+        next: (res) => {
+          this.paginatedData = res.products
+            .filter((item: any) => 
+              !this.excludedCategories.includes(item.category) &&
+              (item.title.toLowerCase().includes(searchText.toLowerCase()) || 
+               item.description.toLowerCase().includes(searchText.toLowerCase()))
+            )
+            .map((item: any) => ({
+              id: item.id,
+              title: item.title,
+              description: item.description,
+              price: item.price,
+              category: item.category,
+            }));
+        },
+        error: (err) => console.error("Erro ao buscar todos os produtos:", err)
+      });
+    }
+  }
+  
 
   nextPage() {
     if (this.currentPage < this.totalPages - 1) {
@@ -61,4 +88,13 @@ export class ItemTableComponent implements OnInit {
       this.getPageData(this.currentPage);
     }
   }
+
+  
+  updateItem(updatedData: CadastroData) {
+    const index = this.paginatedData.findIndex(item => item.id === updatedData.id);
+    if (index !== -1) {
+      this.paginatedData[index] = updatedData;
+    }
+  }
+
 }

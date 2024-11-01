@@ -7,11 +7,12 @@ import { SearchFilterComponent } from './Components/search-filter/search-filter.
 import { ModalAddComponent } from './Components/modal-add/modal-add.component';
 import { DeleteModalComponent } from './Components/delete-modal/delete-modal.component';
 import { ItemTableComponent } from './Components/item-table/item-table.component';
-import { PaginationComponent } from './Components/pagination/pagination.component';
 import { IndexComponent } from './pages/index/index.component';
 import { EditItensComponent } from './Components/edit-itens/edit-itens.component';
 
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalCadastroComponent } from './Components/modal-cadastro/modal-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +21,16 @@ import { HttpClientModule } from '@angular/common/http'
     ModalAddComponent,
     DeleteModalComponent,
     ItemTableComponent,
-    PaginationComponent,
     IndexComponent,
-    EditItensComponent
+    EditItensComponent,
+    ModalCadastroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

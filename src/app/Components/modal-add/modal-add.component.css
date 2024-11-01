@@ -1,13 +1,17 @@
-
-
-.button-large{
+.button-large {
     width: 100%;
     height: 48px;
     background-color: #28A745;
     border: solid 1px;
     border-radius: 10px;
     font-weight: 500;
-}   
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.button-large:hover {
+    background-color: #218838; 
+}
 
 @media (max-width: 768px) {
     .button-large {
@@ -15,5 +19,4 @@
         height: 40px;
         font-size: 0.5rem; 
     }
-
 }

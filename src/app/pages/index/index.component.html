@@ -2,10 +2,10 @@
     <div class="main">
         <div class="order">
             <div class="button-add">
-                <app-modal-add></app-modal-add>
+                <app-modal-add (productAdded)="addProductLocally($event)"></app-modal-add>
             </div>
             <div class="button-search">
-                <app-search-filter></app-search-filter>
+                <app-search-filter (searchTextChanged)="onSearchTextChanged($event)"></app-search-filter>
             </div>
             <div class="button-del">
                 <app-delete-modal></app-delete-modal>

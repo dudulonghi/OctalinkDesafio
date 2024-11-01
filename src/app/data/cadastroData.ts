@@ -1,6 +1,5 @@
-export type CadastroData = {
+export type     CadastroData = {
     id: number;
-    images: string[];
     title: string;
     description: string;
     price: number;
