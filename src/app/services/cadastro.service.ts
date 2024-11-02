@@ -40,4 +40,8 @@ export class CadastroService implements OnInit{
   updateProduct(id: number, productData: CadastroData): Observable<CadastroData> {
     return this.http.put<CadastroData>(`${this.baseURL}/${id}`, productData);
   }
+
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(`${this.baseURL}/${id}`);
+  }
 }

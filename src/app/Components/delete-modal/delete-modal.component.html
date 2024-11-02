@@ -1,6 +1,8 @@
-<div class="container__button-del"> 
-    <button 
-        [ngClass]="verifyModalDel ? 'button-all' : 'button-delete'">
-        {{ verifyModalDel ? 'Excluir todos' : 'Remover' }}
+<div class="container__button-del">
+    <button
+      [ngClass]="verifyModalDel ? 'button-all' : 'button-delete'"
+      (click)="deleteProduct()">
+      {{ verifyModalDel ? 'Excluir todos' : 'Remover' }}
     </button>
-</div>
+  </div>
+  

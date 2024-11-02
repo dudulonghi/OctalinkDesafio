@@ -19,8 +19,10 @@
                   [itemData]="item" 
                   (edit)="updateItem($event)">
                 </app-edit-itens>
-                    <app-delete-modal></app-delete-modal>
-                </div>
+                <app-delete-modal 
+                [productId]="item.id" 
+                (productDeleted)="removeItemFromList($event)">
+              </app-delete-modal>              </div>
             </td>
           </tr>
         </tbody>

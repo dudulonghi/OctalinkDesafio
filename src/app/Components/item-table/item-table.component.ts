@@ -18,6 +18,7 @@ export class ItemTableComponent implements OnInit {
   pageSize: number = 6;
   totalPages: number = 0;
   allProducts: TableData[] = [];
+  selectedProductId: number = 0;
 
   constructor(private service: CadastroService) {}
 
@@ -28,18 +29,24 @@ export class ItemTableComponent implements OnInit {
   getPageData(page: number) {
     this.service.getPaginatedProducts(page, this.pageSize).subscribe({
       next: (res) => {
-        this.data = res.products
-          .filter((item: any) => !this.excludedCategories.includes(item.category))
-          .map((item: any) => ({
+        const filteredProducts = res.products.filter((item: any) => 
+          !this.excludedCategories.includes(item.category)
+        );
+          if (filteredProducts.length === 0) {
+          this.currentPage++;
+          this.getPageData(this.currentPage); 
+        } else {
+          this.data = filteredProducts.map((item: any) => ({
             id: item.id,
             title: item.title,
             description: item.description,
             price: item.price,
             category: item.category,
           }));
-        
-        this.updatePaginatedData();
-        this.totalPages = Math.ceil(res.total / this.pageSize);
+  
+          this.updatePaginatedData();
+          this.totalPages = Math.ceil(res.total / this.pageSize);
+        }
       },
       error: (err) => console.error("Erro ao buscar os dados:", err)
     });
@@ -96,5 +103,8 @@ export class ItemTableComponent implements OnInit {
       this.paginatedData[index] = updatedData;
     }
   }
-
+  removeItemFromList(productId: number) {
+    this.paginatedData = this.paginatedData.filter(item => item.id !== productId);
+  }
+  
 }
