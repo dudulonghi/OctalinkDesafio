@@ -26,36 +26,37 @@ Aqui está o processo de desenvolvimento da interface do projeto, desde o design
    - Primeiramente, foi criado o design de todas as telas e fluxos de usuário no Figma para planejar a interface e a navegação.
 
      - **Protótipo de Design - Tela Principal**:
-       ![Protótipo Figma](https://ibb.co/VHXcvZ5)
+       ![Protótipo Figma](https://i.ibb.co/ZHyphP7/Octalink-principal.png)
        
      - **Protótipo de Design - Tela de Cadastro **:
-       ![Protótipo Figma](https://ibb.co/2SfLvv7)
+       ![Protótipo Figma](https://i.ibb.co/gdBXSSM/modalAdd.png)
        
      - **Protótipo de Design - Tela de Confirmar Delete**:
-       ![Protótipo Figma](https://ibb.co/St22T1G)
+       ![Protótipo Figma](https://i.ibb.co/v3bb5rR/Frame-1.png)
 
 
 2. **Componentização**
    - Depois do design, realizaei a componentização das partes principais da interface para reutilização e manutenção.
 
      - **Componentização da Tela Principal**:
-       ![Componente Header](https://ibb.co/dGjCCqj)
+       ![Componente Header](https://i.ibb.co/0hm44Sm/componentiza-o-princial.png)
 
      - **Componentização das Telas de Cadastro e Delete**:
-       ![Componente Tabela de Dados](https://ibb.co/K06CK7f)
+     - 
+       ![Componente Tabela de Dados](https://i.ibb.co/smjLWQN/componentiza-o.png)
 
 
 3. **Tela Final**
    - Aqui está a tela final em funcionamento com todos os componentes integrados.
 
      - **Página Inicial**:
-       ![Página Inicial](https://ibb.co/V2FQjGL)
+       ![Página Inicial](https://i.ibb.co/syT6m4g/tela1.png)
        
      - **Página Inicial com Cadastro**:
-       ![Página Inicial-cadastro](https://ibb.co/dGV8xhz)
+       ![Página Inicial-cadastro](https://i.ibb.co/Yp1Hwrq/tela2.png)
        
      - **Página Inicial com Delete**:
-       ![Página Inicial-delete](https://ibb.co/Jmj99rk)
+       ![Página Inicial-delete](https://i.ibb.co/LYd339p/tela3.png)
 
 ## Pré-requisitos
 - Node.js
@@ -85,7 +86,7 @@ Aqui está uma explicação de como utilizar cada funcionalidade do projeto:
 - Ao acessar a página inicial do projeto, você verá uma lista de dados exibida em uma tabela.
 - Cada linha representa um item, mostrando todos os dados [exceto os que tinham as categorias indesejadas].
 - O Lazy loading foi utilizado de maneira onde cada vez que passar a página da tabela, carrega 6 itens de cada vez, e não todos os dados.
-![Lazy](https://ibb.co/ScpxX9g)
+![Lazy](https://i.ibb.co/C6Ft5Ty/lazy.png)
 
 ### Adicionar Dados
 - Para adicionar um novo item, clique no botão "Adicionar" localizado no topo da tabela.
@@ -122,11 +123,11 @@ Todo o código deste projeto foi escrito em inglês para facilitar o entendiment
 
 Aqui está uma visão da estrutura de pastas e arquivos do projeto para facilitar o entendimento da organização do código.
 
-![Estrutura do Código](https://ibb.co/vLsGStt)
+![Estrutura do Código](https://i.ibb.co/MP84mXX/telavs.png)
 
 - **src/app**: Contém os componentes principais, serviços, modals e interfaces utilizados no projeto.
 
-![Estrutura do Código app](https://ibb.co/z50S2z5)
+![Estrutura do Código app](https://i.ibb.co/Sx9Kmzx/telaapp.png)
 
 Essa organização permite uma divisão clara das funcionalidades, facilitando a manutenção e a escalabilidade do projeto.
 ## Conclusão
@@ -137,15 +138,12 @@ Obrigado por esse projeto! Espero que ele cumpra todas as exigências. Se você 
 
 Desenvolvido por:
 
-![Minha Imagem](https://ibb.co/brBKQxS)
+<img src="https://i.ibb.co/vJPjVb7/eu.jpg" alt="Descrição da imagem" width="250"/>
 
 Você pode me encontrar no [LinkedIn](https://www.linkedin.com/in/eduardolonghi/) ou entrar em contato via [email](mailto:contato.eduardolonghi@gmail.com).
 
 ### Licença
 
 Este projeto está licenciado sob a MIT License. 
-
-
-
 
 
