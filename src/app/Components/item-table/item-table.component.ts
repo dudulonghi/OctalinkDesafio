@@ -65,8 +65,12 @@ export class ItemTableComponent implements OnInit {
           this.paginatedData = res.products
             .filter((item: any) => 
               !this.excludedCategories.includes(item.category) &&
-              (item.title.toLowerCase().includes(searchText.toLowerCase()) || 
-               item.description.toLowerCase().includes(searchText.toLowerCase()))
+              (
+                item.title.toLowerCase().includes(searchText.toLowerCase()) || 
+                item.description.toLowerCase().includes(searchText.toLowerCase()) ||
+                item.category.toLowerCase().includes(searchText.toLowerCase()) || 
+                item.price.toString().includes(searchText)
+              )
             )
             .map((item: any) => ({
               id: item.id,
