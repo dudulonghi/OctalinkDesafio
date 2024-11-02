@@ -19,14 +19,22 @@
                   [itemData]="item" 
                   (edit)="updateItem($event)">
                 </app-edit-itens>
+
                 <app-delete-modal 
-                [productId]="item.id" 
-                (productDeleted)="removeItemFromList($event)">
-              </app-delete-modal>              </div>
+                    [productId]="item.id" 
+                    (productDeleted)="removeItemFromList($event)">
+                </app-delete-modal>
+                </div>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <app-confirm-delete 
+      *ngIf="showConfirmDelete" 
+      (confirmDelete)="deleteConfirmed()"
+      (cancelDelete)="cancelDelete()">
+    </app-confirm-delete>
       <div class="pagination-controls">
         <button (click)="previousPage()" [disabled]="currentPage === 0">&#60;</button>
         <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>

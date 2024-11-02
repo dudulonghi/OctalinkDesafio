@@ -19,6 +19,8 @@ export class ItemTableComponent implements OnInit {
   totalPages: number = 0;
   allProducts: TableData[] = [];
   selectedProductId: number = 0;
+  showConfirmDelete: boolean = false;
+  productIdToDelete!: number;
 
   constructor(private service: CadastroService) {}
 
@@ -110,5 +112,23 @@ export class ItemTableComponent implements OnInit {
   removeItemFromList(productId: number) {
     this.paginatedData = this.paginatedData.filter(item => item.id !== productId);
   }
-  
+  selectProductToDelete(productId: number): void {
+    this.productIdToDelete = productId;
+    this.showConfirmDelete = true;
+  }
+
+  deleteConfirmed(): void {
+    this.service.deleteProduct(this.productIdToDelete).subscribe({
+      next: () => {
+        this.removeItemFromList(this.productIdToDelete);
+        this.showConfirmDelete = false;
+        console.log("Produto deletado com sucesso.");
+      },
+      error: err => console.error("Erro ao deletar produto:", err)
+    });
+  }
+
+  cancelDelete(): void {
+    this.showConfirmDelete = false; 
+  }
 }

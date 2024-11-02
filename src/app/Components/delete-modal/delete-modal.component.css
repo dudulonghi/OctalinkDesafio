@@ -5,6 +5,8 @@
     border: solid 1px;
     border-radius: 10px;
     font-weight: 500;
+    cursor: pointer; 
+
 }   
 
 .button-delete{
@@ -14,6 +16,8 @@
     border: solid 1px;
     font-weight: 500;
     border-radius: 10px;
+    cursor: pointer; 
+
 }
 
 @media (max-width: 768px) {

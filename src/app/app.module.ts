@@ -13,6 +13,7 @@ import { EditItensComponent } from './Components/edit-itens/edit-itens.component
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalCadastroComponent } from './Components/modal-cadastro/modal-cadastro.component';
+import { ConfirmDeleteComponent } from './Components/confirm-delete/confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ModalCadastroComponent } from './Components/modal-cadastro/modal-cadast
     ItemTableComponent,
     IndexComponent,
     EditItensComponent,
-    ModalCadastroComponent
+    ModalCadastroComponent,
+    ConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,
