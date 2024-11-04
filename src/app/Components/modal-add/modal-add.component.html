@@ -1,6 +1,7 @@
-<div class="container__button"> 
-    <button class="button-large" (click)="modalCadastro.openModal()">ADICIONAR ITENS</button>
-  </div>
-  
-  <app-modal-cadastro #modalCadastro (productAdded)="onProductAdded($event)"></app-modal-cadastro>
-  
+<app-notification #notification></app-notification>
+
+<div class="container__button">
+  <button class="button-large" (click)="modalCadastro.openModal()">ADICIONAR ITENS</button>
+</div>
+
+<app-modal-cadastro #modalCadastro (productAdded)="onProductAdded($event)"></app-modal-cadastro>

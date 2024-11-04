@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CadastroService } from 'src/app/services/cadastro.service';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CadastroData } from 'src/app/data/cadastroData';
+import { NotificationComponent } from '../notifications/notifications.component';
 
 @Component({
   selector: 'app-modal-add',
@@ -12,8 +11,9 @@ export class ModalAddComponent {
   @Output() productAdded = new EventEmitter<CadastroData>();
   showModal: boolean = false;
 
-  constructor() {
-  }
+  @ViewChild('notification') notification!: NotificationComponent;
+
+  constructor() {}
 
   openModal() {
     this.showModal = true;
@@ -22,7 +22,9 @@ export class ModalAddComponent {
   closeModal() {
     this.showModal = false;
   }
+
   onProductAdded(product: CadastroData) {
     console.log('Produto adicionado:', product);
+    this.notification.showNotification('Item adicionado com sucesso!', 'success');
   }
 }

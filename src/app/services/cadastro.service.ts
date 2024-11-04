@@ -24,7 +24,6 @@ export class CadastroService implements OnInit{
     return this.http.get(`${this.baseURL}?limit=${pageSize}&skip=${skip}`);
   }
 
-  //esse para o search, porque se eu utilizar o da tabela, carrega so os 6
   getAllProducts(): Observable<any> {
     return this.http.get<CadastroData>(`https://dummyjson.com/products?limit=200`);
   }
@@ -38,7 +37,7 @@ export class CadastroService implements OnInit{
   }
 
   updateProduct(id: number, productData: CadastroData): Observable<CadastroData> {
-    return this.http.put<CadastroData>(`${this.baseURL}/${id}`, productData);
+    return this.http.put<CadastroData>(`https://dummyjson.com/products/${id}`, productData);
   }
 
   deleteProduct(id: number): Observable<any> {

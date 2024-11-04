@@ -14,6 +14,11 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalCadastroComponent } from './Components/modal-cadastro/modal-cadastro.component';
 import { ConfirmDeleteComponent } from './Components/confirm-delete/confirm-delete.component';
+import { NotificationComponent } from './Components/notifications/notifications.component';
+import { LoadingComponent } from './Components/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -25,14 +30,18 @@ import { ConfirmDeleteComponent } from './Components/confirm-delete/confirm-dele
     IndexComponent,
     EditItensComponent,
     ModalCadastroComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    NotificationComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

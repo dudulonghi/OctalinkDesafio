@@ -1,43 +1,38 @@
 <div class="container__table">
-    <table>
-        <thead>
-          <tr>
-            <th *ngFor="let header of headers">{{ header }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of paginatedData">
-            <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
-            <td class="small-font">{{ item.description }}</td>
-            <td [ngClass]="{'red-price': item.price < 100}"> {{ item.price | currency }}</td>
-            <td>{{ item.category }}</td>
-            <td>
-                <div class="button-container">
-                  <app-edit-itens 
-                  [itemId]="item.id" 
-                  [itemData]="item" 
-                  (edit)="updateItem($event)">
-                </app-edit-itens>
+  <app-notification #notification></app-notification>
+  <app-loading *ngIf="isLoading"></app-loading>
 
-                <app-delete-modal 
-                    [productId]="item.id" 
-                    (productDeleted)="removeItemFromList($event)">
-                </app-delete-modal>
-                </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <table>
+    <div>
+      <div class="spinner"></div>
+    </div>
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{ header }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of paginatedData">
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td class="small-font">{{ item.description }}</td>
+        <td [ngClass]="{ 'red-price': item.price < 100 }">{{ item.price | currency }}</td>
+        <td>{{ item.category }}</td>
+        <td>
+          <div class="button-container">
+            <app-edit-itens [itemId]="item.id" [itemData]="item" (editClicked)="openEditModal($event)">
+            </app-edit-itens>
 
-      <app-confirm-delete 
-      *ngIf="showConfirmDelete" 
-      (confirmDelete)="deleteConfirmed()"
-      (cancelDelete)="cancelDelete()">
-    </app-confirm-delete>
-      <div class="pagination-controls">
-        <button (click)="previousPage()" [disabled]="currentPage === 0">&#60;</button>
-        <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
-        <button (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">&#62;</button>
-      </div>
+            <app-modal-cadastro #modalCadastro (productUpdated)="onProductUpdated($event)"> </app-modal-cadastro>
+            <app-delete-modal [productId]="item.id" (productDeleted)="onProductDeleted($event)"> </app-delete-modal>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 0">&#60;</button>
+    <button (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">&#62;</button>
+  </div>
 </div>

@@ -1,12 +1,11 @@
 <div class="container__button-del">
-    <button
-      [ngClass]="verifyModalDel ? 'button-all' : 'button-delete'"
-      (click)="confirmDelete()">
-      {{ verifyModalDel ? 'Excluir todos' : 'Remover' }}
-    </button>
+  <button [ngClass]="verifyModalDel ? 'button-all' : 'button-delete'" (click)="confirmDelete()">
+    {{ verifyModalDel ? 'Excluir todos' : 'Remover' }}
+  </button>
 </div>
 
-<app-confirm-delete *ngIf="showConfirm" 
-  (confirmDelete)="deleteProduct()" 
-  (cancelDelete)="cancelDelete()">
-</app-confirm-delete>
+<app-confirm-delete
+  *ngIf="showConfirm"
+  (confirmDelete)="deleteProduct()"
+  (cancelDelete)="cancelDelete()"
+></app-confirm-delete>

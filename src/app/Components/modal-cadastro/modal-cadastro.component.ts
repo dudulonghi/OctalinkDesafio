@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CadastroData } from 'src/app/data/cadastroData';
 import { CadastroService } from 'src/app/services/cadastro.service';
@@ -10,11 +10,16 @@ import { CadastroService } from 'src/app/services/cadastro.service';
 })
 export class ModalCadastroComponent implements OnInit {
   @Output() productAdded = new EventEmitter<CadastroData>();
+  @Output() productUpdated = new EventEmitter<CadastroData>();
+  @Input() productData?: CadastroData;
+
   addProductForm: FormGroup;
   showModal: boolean = false;
+  isEditMode: boolean = false;
 
   constructor(private fb: FormBuilder, private service: CadastroService) {
     this.addProductForm = this.fb.group({
+      id: [null],
       title: ['', Validators.required],
       description: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
@@ -24,43 +29,52 @@ export class ModalCadastroComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.productData) {
+      this.setEditMode(this.productData);
+    }
+  }
 
   openModal() {
+    this.isEditMode = false;
     this.showModal = true;
   }
 
   openModalWithData(productData: CadastroData) {
-    this.addProductForm.patchValue(productData); 
-    this.showModal = true; 
+    this.setEditMode(productData);
+    this.showModal = true;
+  }
+
+  setEditMode(productData: CadastroData) {
+    this.isEditMode = true;
+    this.addProductForm.patchValue(productData);
   }
 
   closeModal() {
     this.showModal = false;
+    this.addProductForm.reset();
   }
 
   onSubmit() {
     if (this.addProductForm.valid) {
       const productData: CadastroData = this.addProductForm.value;
-        if (!productData.id) {
-        this.service.addProduct(productData).subscribe({
-          next: (newProduct) => {
-            this.productAdded.emit(newProduct); 
-            this.closeModal();
-            this.addProductForm.reset();
-          },
-          error: (err) => console.error("Erro ao adicionar o produto:", err)
-        });
-      } else {
+      if (this.isEditMode && productData.id) {
         this.service.updateProduct(productData.id, productData).subscribe({
-          next: () => {
+          next: (updatedProduct) => {
+            this.productUpdated.emit(updatedProduct);
             this.closeModal();
-            this.addProductForm.reset();
           },
           error: (err) => console.error("Erro ao atualizar o produto:", err)
+        });
+      } else {
+        this.service.addProduct(productData).subscribe({
+          next: (newProduct) => {
+            this.productAdded.emit(newProduct);
+            this.closeModal();
+          },
+          error: (err) => console.error("Erro ao adicionar o produto:", err)
         });
       }
     }
   }
-  
 }
