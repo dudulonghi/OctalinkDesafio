@@ -112,10 +112,6 @@ Aqui está uma explicação de como utilizar cada funcionalidade do projeto:
 
 Cada funcionalidade foi projetada para ser intuitiva, facilitando o gerenciamento dos dados de forma rápida e eficiente.
 
-## Explicação do Código
-
-Todo o código deste projeto foi escrito em inglês para facilitar o entendimento por uma audiência global. Isso ajuda a garantir que desenvolvedores, colaboradores e revisores de diferentes lugares possam entender e contribuir facilmente com o projeto.
-
 ### Estrutura do Código
 - **Componentes Modulares**: Cada funcionalidade foi dividida em componentes reutilizáveis, o que permite uma organização mais limpa e facilita a manutenção do código.
 - **Serviços para Manipulação de Dados**: As operações de CRUD (Criar, Ler, Atualizar e Deletar) foram implementadas através do serviço (Cadastro.service), garantindo uma separação clara entre a lógica de negócios e a interface do usuário.
