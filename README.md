@@ -11,7 +11,7 @@ O projeto é responsável por realizar um CRUD utilizando o Dummy JSON. Inclui o
 - [x] Adicionar os Dados
 - [x] Deletar os Dados
 - [x] Buscar os Dados
-- [ ] Atualizar os Dados
+- [x] Atualizar os Dados
 
 ## Tecnologias Utilizadas
 - Frontend: Angular
