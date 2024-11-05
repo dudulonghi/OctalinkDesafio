@@ -26,6 +26,7 @@ export class ModalCadastroComponent implements OnInit {
       price: [0, [Validators.required, Validators.min(0)]],
       priceNet: [0, [Validators.required, Validators.min(0)]],
       category: ['', Validators.required],
+      discountPercentage: [0, Validators.required],
       discount: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
     });
   }

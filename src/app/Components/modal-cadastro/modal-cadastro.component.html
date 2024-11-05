@@ -11,10 +11,7 @@
         Descrição:
         <input type="text" formControlName="description" placeholder="Digite a descrição" />
       </label>
-      <label>
-        Preço:
-        <input type="number" formControlName="priceNet" placeholder="Digite o preço" />
-      </label>
+
       <label>
         Preço Líquido:
         <input type="number" formControlName="price" placeholder="Digite o preço líquido" />
@@ -25,7 +22,20 @@
       </label>
       <label>
         Desconto:
-        <input type="number" formControlName="discount" placeholder="Digite o desconto" />
+        <input type="number" formControlName="discountPercentage" placeholder="Digite o desconto" />
+      </label>
+      <label>
+        Preço Bruto:
+        <input
+          type="number"
+          placeholder="Digite o preço"
+          [value]="
+            (
+              addProductForm.get('price')?.value /
+              (1 - (addProductForm.get('discountPercentage')?.value / 100 || 1))
+            ).toFixed(2)
+          "
+        />
       </label>
       <div class="button-group">
         <button type="button" class="cancel-button" (click)="closeModal()">Cancelar</button>
