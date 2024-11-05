@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CadastroData } from 'src/app/data/cadastroData';
+import { UpdateCadastroData } from 'src/app/interface/update';
 import { CadastroService } from 'src/app/services/cadastro.service';
 
 @Component({
@@ -57,22 +58,36 @@ export class ModalCadastroComponent implements OnInit {
 
   onSubmit() {
     if (this.addProductForm.valid) {
-      const productData: CadastroData = this.addProductForm.value;
-      if (this.isEditMode && productData.id) {
-        this.service.updateProduct(productData.id, productData).subscribe({
-          next: (updatedProduct) => {
-            this.productUpdated.emit(updatedProduct);
-            this.closeModal();
-          },
-          error: (err) => console.error("Erro ao atualizar o produto:", err)
-        });
-      } else {
+        const productData: CadastroData = this.addProductForm.value;
+        if (this.isEditMode) {
+            if (productData.id) {
+                const { id, ...update } = productData;
+                
+                this.service.updateProduct(productData.id, update).subscribe({
+                    next: (updatedProduct) => {
+                        this.productUpdated.emit(updatedProduct);
+                        this.closeModal();
+                        console.log('Produto atualizado com sucesso!', 'success');
+                    },
+                    error: (err) => {
+                        console.error("Erro ao atualizar o produto:", err);
+                        console.log('Erro ao atualizar o produto.', 'error');
+                    }
+                });
+            } else {
+                console.error('ID do produto não está definido para atualização');
+            }
+        } else  {
         this.service.addProduct(productData).subscribe({
           next: (newProduct) => {
             this.productAdded.emit(newProduct);
             this.closeModal();
+            console.log('Produto adicionado com sucesso!', 'success');
           },
-          error: (err) => console.error("Erro ao adicionar o produto:", err)
+          error: (err) => {
+            console.error("Erro ao adicionar o produto:", err);
+            console.log('Erro ao adicionar o produto.', 'error');
+          }
         });
       }
     }

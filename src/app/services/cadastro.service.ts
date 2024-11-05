@@ -3,6 +3,7 @@ import { CadastroData } from '../data/cadastroData';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../interface/apiResponde';
+import { UpdateCadastroData } from '../interface/update';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class CadastroService implements OnInit{
     return this.http.post<CadastroData>(`${this.baseURL}/add`, productData);
   }
 
-  updateProduct(id: number, productData: CadastroData): Observable<CadastroData> {
+  updateProduct(id: number, productData: UpdateCadastroData): Observable<CadastroData> {
     return this.http.put<CadastroData>(`https://dummyjson.com/products/${id}`, productData);
   }
 
