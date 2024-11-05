@@ -28,7 +28,8 @@ Aqui está o processo de desenvolvimento da interface do projeto, desde o design
      - **Protótipo de Design - Tela Principal**:
        ![Protótipo Figma](https://i.ibb.co/ZHyphP7/Octalink-principal.png)
        
-     - **Protótipo de Design - Tela de Cadastro **:
+     - **Protótipo de Design - Tela de Cadastro**:
+     
        ![Protótipo Figma](https://i.ibb.co/gdBXSSM/modalAdd.png)
        
      - **Protótipo de Design - Tela de Confirmar Delete**:
@@ -36,7 +37,7 @@ Aqui está o processo de desenvolvimento da interface do projeto, desde o design
 
 
 2. **Componentização**
-   - Depois do design, realizaei a componentização das partes principais da interface para reutilização e manutenção.
+   - Depois do design, realizei a componentização das partes principais da interface para reutilização e manutenção.
 
      - **Componentização da Tela Principal**:
        ![Componente Header](https://i.ibb.co/0hm44Sm/componentiza-o-princial.png)
@@ -125,7 +126,24 @@ Aqui está uma visão da estrutura de pastas e arquivos do projeto para facilita
 
 ![Estrutura do Código app](https://i.ibb.co/Sx9Kmzx/telaapp.png)
 
-Essa organização permite uma divisão clara das funcionalidades, facilitando a manutenção e a escalabilidade do projeto.
+
+- **`confirm-delete`**: Um modal que vai ser responsável pelo confirmação que irá aparecer para o usuário.
+
+- **`delete-modal`**: É o botão de deletar, está vinculado com o confirm delete.
+
+- **`edit-itens`**: É o botão de editar, ele emit um evento para o modal-cadastro.
+
+- **`item-table`**: É uma tabela, o qual é responsável por fazer um get-all. E algumas outras funções que são implementas nela, pois ela é o "pai", dos outros componentes.
+
+- **`modal-add`**: É o botão de adicionar, ele emit um evento para o modal-cadastro.
+
+- **`modal-cadastro`**: É o formulário tanto para cadastro, tanto para o adicionar. Ele é responsável por fazer os inputs.
+
+- **`notifications`**: É responsável pela notificação do sistema, quando um item é adicionado, aparece para o usuário.
+
+- **`search-filter`**: É o compoennte de pesquisa.
+
+
 ## Conclusão
 
 Obrigado por esse projeto! Espero que ele cumpra todas as exigências. Se você tiver sugestões ou dúvidas, pode entrar em contato comigo.
