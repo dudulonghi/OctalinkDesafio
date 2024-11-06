@@ -4,7 +4,7 @@
 O projeto é responsável por realizar um CRUD utilizando o Dummy JSON. Inclui operações de criar, deletar, visualizar e atualizar dados.
 
 ## Status do Projeto
-*Status atual: Em desenvolvimento* 
+*Status atual: Finalizado* 
 
 ## Funcionalidades
 - [x] Visualizar os Dados

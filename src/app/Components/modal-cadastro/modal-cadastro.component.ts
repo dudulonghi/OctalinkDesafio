@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CadastroData } from 'src/app/data/cadastroData';
 import { UpdateCadastroData } from 'src/app/interface/update';
 import { CadastroService } from 'src/app/services/cadastro.service';
+import { NotificationComponent } from '../notifications/notifications.component';
 
 @Component({
   selector: 'app-modal-cadastro',
@@ -14,11 +15,13 @@ export class ModalCadastroComponent implements OnInit {
   @Output() productUpdated = new EventEmitter<CadastroData>();
   @Input() productData?: CadastroData;
 
+  @ViewChild('notification') notification!: NotificationComponent;
+
   addProductForm: FormGroup;
   showModal: boolean = false;
   isEditMode: boolean = false;
 
-  constructor(private fb: FormBuilder, private service: CadastroService) {
+  constructor(private fb: FormBuilder, private service: CadastroService, ) {
     this.addProductForm = this.fb.group({
       id: [null],
       title: ['', Validators.required],
@@ -57,40 +60,40 @@ export class ModalCadastroComponent implements OnInit {
     this.addProductForm.reset();
   }
 
-  onSubmit() {
-    if (this.addProductForm.valid) {
-        const productData: CadastroData = this.addProductForm.value;
-        if (this.isEditMode) {
-            if (productData.id) {
-                const { id, ...update } = productData;
-                
-                this.service.updateProduct(productData.id, update).subscribe({
-                    next: (updatedProduct) => {
-                        this.productUpdated.emit(updatedProduct);
-                        this.closeModal();
-                        console.log('Produto atualizado com sucesso!', 'success');
-                    },
-                    error: (err) => {
-                        console.error("Erro ao atualizar o produto:", err);
-                        console.log('Erro ao atualizar o produto.', 'error');
-                    }
-                });
-            } else {
-                console.error('ID do produto não está definido para atualização');
+    onSubmit() {
+      if (this.addProductForm.valid) {
+        
+          const productData: CadastroData = this.addProductForm.value;
+          if (this.isEditMode) {
+              if (productData.id) {
+                  const { id, ...update } = productData;
+                  
+                  this.service.updateProduct(productData.id, update).subscribe({
+                      next: (updatedProduct) => {
+                          this.productUpdated.emit(updatedProduct);                    
+                          this.closeModal();
+                      },
+                      error: (err) => {
+                          console.error("Erro ao atualizar o produto:", err);
+                          console.log('Erro ao atualizar o produto.', 'error');
+                      }
+                  });
+              } else {
+                  console.error('ID do produto não está definido para atualização');
+              }
+          } else  {
+          this.service.addProduct(productData).subscribe({
+            next: (newProduct) => {
+              this.productAdded.emit(newProduct);
+              this.closeModal();
+              console.log('Produto adicionado com sucesso!', 'success');
+            },
+            error: (err) => {
+              console.error("Erro ao adicionar o produto:", err);
+              console.log('Erro ao adicionar o produto.', 'error');
             }
-        } else  {
-        this.service.addProduct(productData).subscribe({
-          next: (newProduct) => {
-            this.productAdded.emit(newProduct);
-            this.closeModal();
-            console.log('Produto adicionado com sucesso!', 'success');
-          },
-          error: (err) => {
-            console.error("Erro ao adicionar o produto:", err);
-            console.log('Erro ao adicionar o produto.', 'error');
-          }
-        });
+          });
+        }
       }
     }
-  }
 }

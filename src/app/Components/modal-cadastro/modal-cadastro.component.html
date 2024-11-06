@@ -1,6 +1,7 @@
 <div class="modal-backdrop" *ngIf="showModal">
   <div class="modal-content">
     <button class="close-button" (click)="closeModal()">×</button>
+    <app-notification #notification></app-notification>
     <h3>{{ isEditMode ? 'Atualizar Item' : 'Adicionar Novo Produto' }}</h3>
     <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
       <label>

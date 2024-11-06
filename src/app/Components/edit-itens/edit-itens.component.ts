@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CadastroData } from 'src/app/data/cadastroData';
+import { NotificationComponent } from '../notifications/notifications.component';
 
 @Component({
   selector: 'app-edit-itens',
@@ -13,6 +14,6 @@ export class EditItensComponent {
 
   editItem() {
     this.editClicked.emit(this.itemData);
-  }
-  
+  } 
+
 }

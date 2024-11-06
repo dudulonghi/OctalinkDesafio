@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CadastroData } from 'src/app/data/cadastroData';
 import { TableData } from 'src/app/interface/interface__table';
 import { CadastroService } from 'src/app/services/cadastro.service';
-import { NotificationComponent } from '../notifications/notifications.component';
 import { ModalCadastroComponent } from '../modal-cadastro/modal-cadastro.component';
 
 @Component({
@@ -18,18 +17,13 @@ export class ItemTableComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 6;
   totalPages: number = 0;
-  allProducts: TableData[] = [];
   selectedProductId: number = 0;
   showConfirmDelete: boolean = false;
-  productIdToDelete!: number;
   isLoading: boolean = false;
   quant:number = 0;
-  remainingData: TableData[] = [];
   excessItems: any[] = [];
   selectedItem: any = null;
-  createdProducts: TableData[] = [];
 
-  @ViewChild('notification') notification!: NotificationComponent;
   @ViewChild(ModalCadastroComponent) modalCadastro!: ModalCadastroComponent;
 
   constructor(private service: CadastroService) {}
@@ -37,9 +31,7 @@ export class ItemTableComponent implements OnInit {
   ngOnInit(): void {
     this.getPageData(this.quant);
   }
-  showNotification(message: string) {
-    this.notification.showNotification(message, 'success'); 
-  }
+
   getPageData(page: number) {
   this.isLoading = true;
   if (this.excessItems.length > 0) {
